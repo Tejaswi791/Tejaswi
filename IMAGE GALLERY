@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+
+  <div class="gallery">
+    <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image1.jpg" alt="Image 1" onclick="openModal();currentSlide(1)">
+    <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image2.jpg" alt="Image 2" onclick="openModal();currentSlide(2)">
+    <img src= "C:\Users\AKINAPALLY LAXMITHA\Downloads\image3.jpg" alt="Image2" onclick="openModal();currentSlide(3)">
+    <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image4.jpg"alt="Image 4" onclick="openModal();currentSlide(4)">
+    <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image5.jpg" alt="Image 5" onclick="openModal();currentSlide(5)">
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <div class="mySlides">
+        <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image1.jpg" alt="Image 1">
+      </div>
+      <div class="mySlides">
+        <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image2.jpg" alt="Image 2">
+      </div>
+      <div class="mySlides">
+        <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image3.jpg" alt="Image 3">
+      </div>
+      <div class="mySlides">
+        <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image4.jpg" alt="Image 4">
+      </div>
+      <div class="mySlides">
+        <img src="C:\Users\AKINAPALLY LAXMITHA\Downloads\image5.jpg" alt="Image 5">
+      </div>
+
+      <!-- Next/prev buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+CSS:
+/* Style the Image Grid */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  
+  .gallery img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+  }
+  
+  .modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content img {
+    max-width: 80%;
+    max-height: 80%;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+  }
+  
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  JAVASCRIPT:
+// Open the Modal
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+  }
+  
+  // Close the Modal
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+  
+  var slideIndex = 1;
+  showSlides(slideIndex);
+  
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+  
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
+  }
+  
